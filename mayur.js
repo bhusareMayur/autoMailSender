@@ -1,6 +1,6 @@
-const fs = require('fs');
-const nodemailer = require('nodemailer');
-const csv = require('csv-parser');
+const fs = require("fs");
+const nodemailer = require("nodemailer");
+const csv = require("csv-parser");
 
 // Email configuration
 const transporter = nodemailer.createTransport({
@@ -14,9 +14,14 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = (row) => {
-  const { Rname, Cname, EAddr, pos } = row; // Extract CSV data
+ const { Rname, Cname, EAddr, pos } = {
+    Rname: row.Rname.trim(),
+    Cname: row.Cname.trim(),
+    EAddr: row.EAddr.trim(),
+    pos: row.pos.trim(),
+  }; // Extract CSV data
   const mailOptions = {
-    from: 'Mayur Bhusare <mbhusare_cs@jspmrscoe.edu.in>',
+    from: "Mayur Bhusare <mbhusare_cs@jspmrscoe.edu.in>",
     to: EAddr,
     subject: `Request for an Interview Opportunity - ${pos} at ${Cname}`,
     html: `
@@ -38,7 +43,7 @@ const sendEmail = (row) => {
 <p>Thank you for considering my application. I am looking forward to the possibility of discussing how my skills and passion align with the requirements of the ${pos} role at ${Cname}.</p>
 <p>Best regards,<br>
 <b>Mayur Shankar Bhusare</b><br>
-<b>Contact No:</b> 8262802168</p>`
+<b>Contact No:</b> 8262802168</p>`,
   };
 
   // Send email
@@ -52,13 +57,13 @@ const sendEmail = (row) => {
 };
 
 // Read CSV file and send emails
-fs.createReadStream('data.csv')
+fs.createReadStream("data.csv")
   .pipe(csv())
-  .on('data', (row) => {
+  .on("data", (row) => {
     console.log(`Sending email to ${row.EAddr}...`);
     sendEmail(row);
   })
-  .on('end', () => {
-    console.log('All emails processed.');
+  .on("end", () => {
+    console.log("All emails processed.");
   });
 // to exicute command : node mayur.js
