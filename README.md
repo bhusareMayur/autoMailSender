@@ -9,3 +9,5 @@ $ CSV Parser: To read recipient details from a CSV file.<br>
 $ MySQL Integration: To log successful email deliveries.<br>
 <br>
 ![Mysql table](./screenshots/MySQL_table.png)
+![Terminal commands](./screenshots/Terminal_commands.png)
+![csv file ](./screenshots/csv_file.png)
