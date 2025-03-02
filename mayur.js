@@ -1,6 +1,7 @@
 const fs = require("fs");
 const nodemailer = require("nodemailer");
 const csv = require("csv-parser");
+const mysql = require("mysql2");
 
 // Email configuration
 const transporter = nodemailer.createTransport({
@@ -13,13 +14,41 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// MySQL connection setup
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "email_logs",
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error("Error connecting to the database: " + err.stack);
+    return;
+  }
+  console.log("Connected to MySQL database as id " + connection.threadId);
+});
+
+const saveEmailLog = (Rname, Cname, EAddr, pos) => {
+  const query = `INSERT INTO successful_emails (Rname, Cname, EAddr, pos) VALUES (?, ?, ?, ?)`;
+  connection.execute(query, [Rname, Cname, EAddr, pos], (err, results) => {
+    if (err) {
+      console.error("Error saving to the database: " + err.stack);
+    } else {
+      console.log(`Email log saved for ${EAddr}`);
+    }
+  });
+};
+
 const sendEmail = (row) => {
- const { Rname, Cname, EAddr, pos } = {
+  const { Rname, Cname, EAddr, pos } = {
     Rname: row.Rname.trim(),
     Cname: row.Cname.trim(),
     EAddr: row.EAddr.trim(),
     pos: row.pos.trim(),
-  }; // Extract CSV data
+  }; 
+  // Extract CSV data
   const mailOptions = {
     from: "Mayur Bhusare <mbhusare_cs@jspmrscoe.edu.in>",
     to: EAddr,
@@ -46,12 +75,13 @@ const sendEmail = (row) => {
 <b>Contact No:</b> 8262802168</p>`,
   };
 
-  // Send email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(`Error sending email to ${row.EAddr}: ${error}`);
+      console.log(`Error sending email to ${EAddr}: ${error}`);
     } else {
-      console.log(`Email sent to ${row.EAddr}: ${info.response}`);
+      console.log(`Email sent to ${EAddr}: ${info.response}`);
+      // Log successful emails to MySQL
+      saveEmailLog(Rname, Cname, EAddr, pos);
     }
   });
 };
@@ -66,4 +96,3 @@ fs.createReadStream("data.csv")
   .on("end", () => {
     console.log("All emails processed.");
   });
-// to exicute command : node mayur.js
