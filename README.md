@@ -11,3 +11,4 @@ $ MySQL Integration: To log successful email deliveries.<br>
 ![Mysql table](./screenshots/MySQL_table.png)
 ![Terminal commands](./screenshots/Terminal_commands.png)
 ![csv file ](./screenshots/csv_file.png)
+![Mail Draft ](./screenshots/mail_draft.png)
