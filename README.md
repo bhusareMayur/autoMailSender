@@ -7,3 +7,5 @@ Key components:<br>
 $ Nodemailer: For sending emails.<br>
 $ CSV Parser: To read recipient details from a CSV file.<br>
 $ MySQL Integration: To log successful email deliveries.<br>
+<br>
+![Alt text](screenshots\MySQL table.png)
