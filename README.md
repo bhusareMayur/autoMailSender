@@ -44,6 +44,30 @@
 npm install nodemailer csv-parser mysql2
 ```
 
+## 📦 MySQL Setup
+```bash
+CREATE DATABASE email_logs;
+```
+```bash
+USE email_logs;
+
+```
+```bash
+CREATE TABLE successful_emails (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Rname VARCHAR(255),
+    Cname VARCHAR(255),
+    EAddr VARCHAR(255),
+    pos VARCHAR(255),
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+```
+## 📦 Run the Script
+
+```bash
+node mayur.js
+```
 
 <h2>🙋‍♂️ Author</h2>
 <p>
