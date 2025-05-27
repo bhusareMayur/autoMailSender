@@ -23,6 +23,7 @@
 ├── data.csv              # CSV file with recipient data
 ├── mayur.js              # Main script to send emails
 ├── README.md             # Documentation
+├── Screenshots           # Screenshots of mail template
 </pre>
 
 ---
@@ -41,3 +42,14 @@
 
 ```bash
 npm install nodemailer csv-parser mysql2
+
+
+
+<h2>🙋‍♂️ Author</h2>
+<p>
+  <strong>Mayur Bhusare</strong><br>
+  📧 <a href="mailto:mayurbhusare8262@gmail.com">mayurbhusare8262@gmail.com</a><br>
+  🔗 
+  <a href="https://www.linkedin.com/in/mayur-bhusare/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
+  <a href="https://bhusaremayur.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+</p>
