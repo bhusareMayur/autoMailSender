@@ -42,7 +42,7 @@
 
 ```bash
 npm install nodemailer csv-parser mysql2
-
+```
 
 
 <h2>🙋‍♂️ Author</h2>
