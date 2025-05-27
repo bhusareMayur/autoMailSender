@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "1234",
+  password: "password",
   database: "email_logs",
 });
 
@@ -50,7 +50,7 @@ const sendEmail = (row) => {
   }; 
   // Extract CSV data
   const mailOptions = {
-    from: "Mayur Bhusare <mbhusare_cs@jspmrscoe.edu.in>",
+    from: "Mayur Bhusare <user@gmail.com>",
     to: EAddr,
     subject: `Request for an Interview Opportunity - ${pos} at ${Cname}`,
     html: `
